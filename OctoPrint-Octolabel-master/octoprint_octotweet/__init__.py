@@ -137,8 +137,8 @@ class OctotweetPlugin(octoprint.plugin.EventHandlerPlugin,
 		# Define your plugin's asset files to automatically include in the
 		# core UI here.
 		return dict(
-			js=["js/octotweet.js"],
-			css=["css/octotweet.css"]
+			js=["js/octolabel.js"],
+			css=["css/octolabel.css"]
 		)
 
 	# ~~ TemplatePlugin mixin
