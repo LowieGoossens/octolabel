@@ -28,80 +28,67 @@ class OctotweetPlugin(octoprint.plugin.EventHandlerPlugin,
 			"startup": {
 				"name": "Octoprint Startup",
 				"enabled": False,
-				"with_snapshot": False,
-				"message": "⏰ I just woke up! What are we gonna print today?"
+				"message": "{name}"
 			},
 			"shutdown": {
 				"name": "Octoprint Shutdown",
 				"enabled": False,
-				"with_snapshot": False,
-				"message": "💤 Going to bed now!"
+				"message": "{name}"
 			},
 			"printer_state_operational": {
 				"name": "Printer state : operational",
 				"enabled": False,
-				"with_snapshot": False,
-				"message": "✅ Your printer is operational."
+				"message": "{name}"
 			},
 			"printer_state_error": {
 				"name": "Printer state : error",
 				"enabled": False,
-				"with_snapshot": False,
-				"message": "⚠️ Your printer is in an erroneous state."
+				"message": "{name}"
 			},
 			"printer_state_unknown": {
 				"name": "Printer state : unknown",
 				"enabled": False,
-				"with_snapshot": False,
-				"message": "❔ Your printer is in an unknown state."
+				"message": "{name}"
 			},
 			"printing_started": {
 				"name": "Printing process : started",
 				"enabled": False,
-				"with_snapshot": False,
-				"message": "🖨️ I've started printing **{name}**"
+				"message": "{name}"
 			},
 			"printing_paused": {
 				"name": "Printing process : paused",
 				"enabled": False,
-				"with_snapshot": False,
-				"message": "⏸️ The printing was paused."
+				"message": "{name}"
 			},
 			"printing_resumed": {
 				"name": "Printing process : resumed",
 				"enabled": False,
-				"with_snapshot": False,
-				"message": "▶️ The printing was resumed."
+				"message": "{name}"
 			},
 			"printing_cancelled": {
 				"name": "Printing process : cancelled",
 				"enabled": False,
-				"with_snapshot": False,
-				"message": "🛑 The printing was stopped."
+				"message": "{name}"
 			},
 			"printing_done": {
 				"name": "Printing process : done",
 				"enabled": True,
-				"with_snapshot": False,
-				"message": "FL12 {name}"
+				"message": "{name}"
 			},
 			"printing_failed": {
 				"name": "Printing process : failed",
 				"enabled": False,
-				"with_snapshot": False,
-				"message": "👎 Printing has failed! :("
+				"message": "{name}"
 			},
 			"printing_progress": {
 				"name": "Printing progress",
 				"enabled": False,
-				"with_snapshot": False,
-				"message": "📢 Printing is at {progress}%",
+				"message": "{name}",
 				"step": 10
 			},
 			"test": {  # Not a real message, but we will treat it as one
 				"enabled": False,
-				"with_snapshot": False,
-				"message": "Hello hello! If you see this message, it means that the settings are correct!"
+				"message": "{name}"
 			},
 		}
 
@@ -161,8 +148,8 @@ class OctotweetPlugin(octoprint.plugin.EventHandlerPlugin,
 				#
 				# # version check: github repository
 				# type="github_release",
-				# user="jpg32",
-				# repo="OctoPrint-Octotweet",
+				# user="LowieGoossens",
+				# repo="octolabel",
 				# current=self._plugin_version,
 				#
 				# # update method: pip
@@ -397,7 +384,7 @@ class OctotweetPlugin(octoprint.plugin.EventHandlerPlugin,
 # If you want your plugin to be registered within OctoPrint under a different name than what you defined in setup.py
 # ("OctoPrint-PluginSkeleton"), you may define that here. Same goes for the other metadata derived from setup.py that
 # can be overwritten via __plugin_xyz__ control properties. See the documentation for that.
-__plugin_name__ = "Octotweet"
+__plugin_name__ = "octolabel"
 __plugin_pythoncompat__ = ">=2.7,<4"
 
 

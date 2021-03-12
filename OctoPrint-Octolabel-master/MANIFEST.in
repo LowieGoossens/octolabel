@@ -1,4 +1,4 @@
 include README.md
-recursive-include octoprint_octotweet/templates *
-recursive-include octoprint_octotweet/translations *
-recursive-include octoprint_octotweet/static *
+recursive-include octoprint_octolabel/templates *
+recursive-include octoprint_octolabel/translations *
+recursive-include octoprint_octolabel/static *
