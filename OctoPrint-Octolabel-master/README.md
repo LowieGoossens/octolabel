@@ -1,58 +1,63 @@
-# Octoprint-OctoTweet 1.0.2
+# Octoprint-OctoLabel 1.0
 
-OctoTweet is a plugin allowing Octoprint to send notifications to Twitter.
+OctoLabel is a plugin allowing Octoprint to print labels.
 This is a fork of the amazing pluggin [Octorant](https://plugins.octoprint.org/plugins/octorant/) by @bchanudet.
-
-![twitter result](assets/img/twitter.jpg)
-![settings octoprint](assets/img/settings.jpg)
+This is a fork of the amazing pluggin [Octotweet](https://plugins.octoprint.org/plugins/octotweet/) by @Jean Pierre GARCIA.
+This is a fork of the amazing api [label_api](https://github.com/pklaus/label_api) by @Philipp Klaus.
 
 ## SETUP
 ### Install the plugin
 Install manually using this url :  
-https://github.com/jpg32/OctoPrint-Octotweet/archive/master.zip  
+https://github.com/LowieGoossens/octolabel/archive/master.zip  
 
-### Create Twitter App 
-Login with your Twitter account on [developer.twitter.com](https://developer.twitter.com/en).
+### Install the plugin
+Included in the folder label print api, there you find the api writen by Philipp Klaus.
+Run this api on a seperated raspberry connected to an brother label printer and modify the namebadge plugin.
+It is possible to change the lettertype, textposition, de label type,...
+It is important to change the ip-adres and printer settings in the file label_api. (Do not change the port)p
 
-Clic on *App* and then on *Create an app*:
-![screen twitter setup 1](assets/docs/twitter_setup_1.JPG)
+The following printers are claimed to be supported (✓ means verified by the author or by contributors):
 
-Select *Student*:
-![screen twitter setup 2](assets/docs/twitter_setup_2.JPG)
+QL-500 (✓), QL-550 (✓), QL-560 (✓), QL-570 (✓), QL-580N, QL-650TD, QL-700 (✓), QL-710W (✓), QL-720NW (✓), QL-800 (✓), QL-810W (✓), QL-820NWB (✓), QL-1050 (✓), and QL-1060N (✓).
+The new QL-800 series can print labels with two colors (black and red) on DK-22251 labels.
 
-Follow steps to complete the subscription of Twitter's Developer Program:
-![screen twitter setup 3](assets/docs/twitter_setup_3.JPG)
+Note: If your printer has an 'Editor Lite' mode, you need to disable it if you want to print via USB. Make sure that the corresponding LED is not lit by holding the button down until it turns off.
 
-Now you can create a new app:  
-![screen twitter setup 4](assets/docs/twitter_setup_4.JPG)
+The available label names can be listed with `brother_ql info labels`:
 
-The next step show you yours API Key & API secret keys:
-![screen twitter setup 4](assets/docs/twitter_setup_5.JPG)
+     Name      Printable px   Description
+     12         106           12mm endless
+     29         306           29mm endless
+     38         413           38mm endless
+     50         554           50mm endless
+     54         590           54mm endless
+     62         696           62mm endless
+     102       1164           102mm endless
+     17x54      165 x  566    17mm x 54mm die-cut
+     17x87      165 x  956    17mm x 87mm die-cut
+     23x23      202 x  202    23mm x 23mm die-cut
+     29x42      306 x  425    29mm x 42mm die-cut
+     29x90      306 x  991    29mm x 90mm die-cut
+     39x90      413 x  991    38mm x 90mm die-cut
+     39x48      425 x  495    39mm x 48mm die-cut
+     52x29      578 x  271    52mm x 29mm die-cut
+     62x29      696 x  271    62mm x 29mm die-cut
+     62x100     696 x 1109    62mm x 100mm die-cut
+     102x51    1164 x  526    102mm x 51mm die-cut
+     102x152   1164 x 1660    102mm x 153mm die-cut
+     d12         94 x   94    12mm round die-cut
+     d24        236 x  236    24mm round die-cut
+     d58        618 x  618    58mm round die-cut
 
-Put them on Octoprint-Octotweet:  
-![screen octoprint 1](assets/docs/octoprint_1.JPG)
 
-Edit app's permissions:
-![screen twitter setup 6](assets/docs/twitter_setup_6.JPG)
-![screen twitter setup 7](assets/docs/twitter_setup_7.JPG)
+### Label Settings
+Here you can customize the timing of every Label handled by Octoprint.
 
-Go to *Key and tokens* :
-![screen twitter setup 8](assets/docs/twitter_setup_8.JPG)
+![screen twitter setup 1](assets/docs/setup1.png)
+![screen twitter setup 1](assets/docs/setup2.png)
 
-Generate *Acces Token & Secret*:
-![screen twitter setup 11](assets/docs/twitter_setup_11.JPG)
-
-Copy generated tokens to Octoprint :
-![screen twitter setup 4](assets/docs/twitter_setup_12.JPG)
-![screen twitter setup 4](assets/docs/octoprint_2.JPG)
-
-### Message Settings
-
-Here you can customize every message handled by Octoprint.
-
-- **Toggle the message** : by unchecking the checkbox in front of the message title, you can disable the message. It won't be sent to Twitter.
+- **Toggle the message** : by unchecking the checkbox in front of the time title, you can disable the printing the label.
 - **Message** : you can change the default content here. See the section [Message format](#message-format) for more information.
-- **Include snapshot** : if you have a snapshot URL defined in the Octoprint settings, you can choose to upload a snapshot with the message to Twitter.
 - **Notify every `XX`%** : specific to the `printing progress` message, this setting allows you to change the frequency of the notification :
     - `10%` means you'll receive a message at 10%, 20%, 30%, 40% ... 80%, 90% of the printing process.
     - `5%` means you'll receive a message at 5%, 10%, 15%, 20% ... 80%, 85%, 90%, 95% of the printing process.
