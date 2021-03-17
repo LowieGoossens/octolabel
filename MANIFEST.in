@@ -1,0 +1,4 @@
+include README.md
+recursive-include octoprint_octolabel/templates *
+recursive-include octoprint_octolabel/translations *
+recursive-include octoprint_octolabel/static *
