@@ -8,7 +8,7 @@ author: Lowie Goossens
 license: MIT
 
 # today's date in format YYYY-MM-DD, e.g.
-date: 2020-03-17
+date: 2020-03-19
 
 homepage: https://github.com/LowieGoossens/octolabel
 source: https://github.com/LowieGoossens/octolabel
