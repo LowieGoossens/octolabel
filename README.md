@@ -53,8 +53,8 @@ The available label names can be listed with `brother_ql info labels`:
 ### Label Settings
 Here you can customize the timing of every Label handled by Octoprint.
 
-![screen twitter setup 1](assets/docs/setup1.png)
-![screen twitter setup 1](assets/docs/setup2.png)
+![screen setup 1](assets/docs/setup1.png)
+![screen setup 2](assets/docs/setup2.png)
 
 - **Toggle the message** : by unchecking the checkbox in front of the time title, you can disable the printing the label.
 - **Message** : you can change the default content here. See the section [Message format](#message-format) for more information.
@@ -126,3 +126,5 @@ Some events also support variables, here is a basic list:
 - `{error}` : The error received
 
 For more reference, you can go to the [Octoprint documentation on Events](http://docs.octoprint.org/en/master/events/index.html#sec-events-available-events).
+## testing configuration label printer
+In the test_code directory you find a python code for test and troubleshoot the configuration of the label printer.
