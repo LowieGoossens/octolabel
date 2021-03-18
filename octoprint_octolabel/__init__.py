@@ -1,21 +1,18 @@
 # coding=utf-8
 from __future__ import absolute_import
+
+import os
+import subprocess
+from datetime import timedelta
+
+import octoprint.filemanager
 # from .discord import Hook
-import requests
-import json
 import octoprint.plugin
 import octoprint.settings
-import octoprint.filemanager
 import requests
-from datetime import timedelta
-from PIL import Image
-from io import BytesIO
-import subprocess
-import os
-import tweepy
 
 
-class OctotweetPlugin(octoprint.plugin.EventHandlerPlugin,
+class OctolabelPlugin(octoprint.plugin.EventHandlerPlugin,
 					  octoprint.plugin.StartupPlugin,
 					  octoprint.plugin.SettingsPlugin,
 					  octoprint.plugin.AssetPlugin,
@@ -24,6 +21,7 @@ class OctotweetPlugin(octoprint.plugin.EventHandlerPlugin,
 	def __init__(self):
 		# Events definition here (better for intellisense in IDE)
 		# referenced in the settings too.
+		super().__init__()
 		self.events = {
 			"startup": {
 				"name": "Octoprint Startup",
@@ -93,7 +91,7 @@ class OctotweetPlugin(octoprint.plugin.EventHandlerPlugin,
 		}
 
 	def on_after_startup(self):
-		self._logger.info("Octotweet is started !")
+		self._logger.info("Octolabel is started !")
 
 	# ~~ SettingsPlugin mixin
 
@@ -211,7 +209,9 @@ class OctotweetPlugin(octoprint.plugin.EventHandlerPlugin,
 			self._logger.info("Settings have changed. Send a test message...")
 			self.notify_event("test")
 
-	def notify_event(self, eventID, data={}):
+	def notify_event(self, eventID, data=None):
+		if data is None:
+			data = {}
 		if (eventID not in self.events):
 			self._logger.error(
 				"Tried to notifiy on inexistant eventID : ", eventID)
@@ -245,6 +245,7 @@ class OctotweetPlugin(octoprint.plugin.EventHandlerPlugin,
 
 		self._logger.debug("Available variables for event " +
 						   eventID + ": " + ", ".join(list(data)))
+		message = ''
 		try:
 			message = tmpConfig["message"].format(**data)
 		except KeyError as error:
@@ -295,78 +296,6 @@ class OctotweetPlugin(octoprint.plugin.EventHandlerPlugin,
 		# exec "before" script if any
 		self.exec_script(eventID, "before")
 
-		# Get snapshot if asked for
-		snapshot = None
-		snapshotUrl = self._settings.global_get(["webcam", "snapshot"])
-		if withSnapshot and snapshotUrl is not None and "http" in snapshotUrl:
-			try:
-				snapshotCall = requests.get(snapshotUrl)
-
-				# Get the settings used for streaming to know if we should transform the snapshot
-				mustFlipH = self._settings.global_get_boolean(
-					["webcam", "flipH"])
-				mustFlipV = self._settings.global_get_boolean(
-					["webcam", "flipV"])
-				mustRotate = self._settings.global_get_boolean(
-					["webcam", "rotate90"])
-
-				# Only do something if we got the snapshot
-				if snapshotCall:
-					snapshotImage = BytesIO(snapshotCall.content)
-
-					# Only call Pillow if we need to transpose anything
-					if (mustFlipH or mustFlipV or mustRotate):
-						img = Image.open(snapshotImage)
-
-						self._logger.info("Transformations : FlipH={}, FlipV={} Rotate={}".format(
-							mustFlipH, mustFlipV, mustRotate))
-
-						if mustFlipH:
-							img = img.transpose(Image.FLIP_LEFT_RIGHT)
-
-						if mustFlipV:
-							img = img.transpose(Image.FLIP_TOP_BOTTOM)
-
-						if mustRotate:
-							img = img.transpose(Image.ROTATE_90)
-
-						newImage = BytesIO()
-						img.save(newImage, 'jpg')
-
-						snapshotImage = newImage
-
-					snapshot = {
-						'file': ("snapshot.jpg", snapshotImage.getvalue())}
-					img = Image.open(snapshotImage)
-					file_name = self.get_plugin_data_folder() + "/image.png"
-					img.save(file_name)
-			except requests.ConnectionError:
-				snapshot = None
-				self._logger.error(
-					"{}: ConnectionError on: '{}'".format(eventID, snapshotUrl))
-			except requests.ConnectTimeout:
-				snapshot = None
-				self._logger.error(
-					"{}: ConnectTimeout on: '{}'".format(eventID, snapshotUrl))
-
-		# # Send to twitter
-		# if self._settings.get(['activated']) is True:
-		# 	auth = tweepy.OAuthHandler(self._settings.get(
-		# 		['consumer_key']), self._settings.get(['consumer_secret']))
-		# 	auth.set_access_token(self._settings.get(
-		# 		['access_token']), self._settings.get(['access_token_secret']))
-		#
-		# 	api = tweepy.API(auth)
-		#
-		# 	message = self._settings.get(
-		# 		["username"], merged=True) + " : " + message
-		# 	if withSnapshot:
-		# 		media = api.media_upload(file_name)
-		# 		post_result = api.update_status(
-		# 			status=message, media_ids=[media.media_id])
-		# 	else:
-		# 		post_result = api.update_status(status=message)
-
 		post_result ="ok"
 
 		url = 'http://' + self._settings.get(["printerip"], merged=True) + ':8765/api/print/namebadge'
@@ -390,7 +319,7 @@ __plugin_pythoncompat__ = ">=2.7,<4"
 
 def __plugin_load__():
 	global __plugin_implementation__
-	__plugin_implementation__ = OctotweetPlugin()
+	__plugin_implementation__ = OctolabelPlugin()
 
 	global __plugin_hooks__
 	__plugin_hooks__ = {
