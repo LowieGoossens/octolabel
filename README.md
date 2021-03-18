@@ -126,3 +126,5 @@ Some events also support variables, here is a basic list:
 - `{error}` : The error received
 
 For more reference, you can go to the [Octoprint documentation on Events](http://docs.octoprint.org/en/master/events/index.html#sec-events-available-events).
+## testing configuration label printer
+In the test_code directory you find a python code for test and troubleshoot the configuration of the label printer.
