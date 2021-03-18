@@ -144,16 +144,16 @@ class OctotweetPlugin(octoprint.plugin.EventHandlerPlugin,
 		return dict(
 			octotweet=dict(
 				displayName="Label Plugin",
-				# displayVersion=self._plugin_version,
-				#
-				# # version check: github repository
-				# type="github_release",
-				# user="LowieGoossens",
-				# repo="octolabel",
-				# current=self._plugin_version,
-				#
-				# # update method: pip
-				# pip="https://github.com/jpg32/OctoPrint-Octotweet/archive/{target_version}.zip"
+				 displayVersion=self._plugin_version,
+
+				 # version check: github repository
+				 type="github_release",
+				 user="LowieGoossens",
+				 repo="octolabel",
+				 current=self._plugin_version,
+
+				# update method: pip
+				pip="https://github.com/LowieGoossens/octolabel/archive/{target_version}.zip"
 			)
 		)
 
