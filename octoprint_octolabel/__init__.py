@@ -255,7 +255,7 @@ class OctolabelPlugin(octoprint.plugin.EventHandlerPlugin,
 					  """\r\n Available variables: `{""" + \
 					  '}`, `{'.join(list(data)) + "}`"
 		finally:
-			return self.send_message(eventID, message, tmpConfig["with_snapshot"])
+			return self.send_message(eventID, message)
 
 	def exec_script(self, eventName, which=""):
 
@@ -287,7 +287,7 @@ class OctolabelPlugin(octoprint.plugin.EventHandlerPlugin,
 				"{}:{} > Output: '{}'".format(eventName, which, out))
 			return out
 
-	def send_message(self, eventID, message, withSnapshot=False):
+	def send_message(self, eventID, message):
 
 		# return false if no URL is provided
 		# if "http" not in self._settings.get(["url"],merged=True):
