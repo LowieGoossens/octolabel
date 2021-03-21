@@ -140,7 +140,7 @@ class OctolabelPlugin(octoprint.plugin.EventHandlerPlugin,
 		# Plugin here. See https://github.com/foosel/OctoPrint/wiki/Plugin:-Software-Update
 		# for details.
 		return dict(
-			Octolabel=dict(
+			octolabel=dict(
 				displayName="Octolabel",
 				 displayVersion=self._plugin_version,
 
