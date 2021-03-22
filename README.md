@@ -5,6 +5,15 @@ This is a fork of the amazing pluggin [Octorant](https://plugins.octoprint.org/p
 This is a fork of the amazing pluggin [Octotweet](https://plugins.octoprint.org/plugins/octotweet/) by @Jean Pierre GARCIA.
 This is a fork of the amazing api [label_api](https://github.com/pklaus/label_api) by @Philipp Klaus.
 
+## What is this?
+This plugin makes it possible to print a label with a brother label printer each time a print is ready.
+On this label stands the name of the printer so we know to witch printbed we have to go to collect a print,
+And the name of the printed file so we know for who the print is.
+This is a preview of a printed label:
+(This is a die cut 62x29 label from brother)
+![preview](assets/docs/preview.jpg)
+
+ 
 ## SETUP
 ### Install the plugin
 Install manually using this url :  
@@ -126,5 +135,3 @@ Some events also support variables, here is a basic list:
 - `{error}` : The error received
 
 For more reference, you can go to the [Octoprint documentation on Events](http://docs.octoprint.org/en/master/events/index.html#sec-events-available-events).
-## testing configuration label printer
-In the test_code directory you find a python code for test and troubleshoot the configuration of the label printer.
