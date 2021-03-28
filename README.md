@@ -13,7 +13,7 @@ This is a preview of a printed label:
 (This is a die cut 62x29 label from brother)
 ![preview](assets/docs/preview.jpg)
 
-##How does this work?
+## How does this work?
 ![how](assets/docs/how.jpg)
 
 (Multiple Octoprint instances can send data to one single label instance)
