@@ -196,9 +196,9 @@ Install requirements:
 
 Run:
 
+    ./label_api
+    # for more info:
     ./label_api --help
-    # for example:
-    ./label_api --port 8080 --model QL-800 --printer usb://0x04f9:0x2015 --backend pyusb
 
 The CLI signature of `label_api` is as follows:
 
