@@ -141,7 +141,7 @@ class OctolabelPlugin(octoprint.plugin.EventHandlerPlugin,
 		# for details.
 		return dict(
 			octolabel=dict(
-				displayName="Octolabel",
+				displayName="Octolabel plugin",
 				 displayVersion=self._plugin_version,
 
 				 # version check: github repository
