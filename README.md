@@ -27,7 +27,7 @@ In this example this is:
 ## SETUP
 ### Install the plugin manually
 Install manually using this url :  
-https://github.com/LowieGoossens/octolabel/archive/master.zip
+https://github.com/LowieGoossens/octolabel/archive/refs/heads/master.zip
 
 After installing enable the plugin on the plugin manager and on the first checkbox in the settings tab.
 ### Install the plugin through the octoprint plugin manager
