@@ -12,7 +12,7 @@ date: 2020-03-19
 
 homepage: https://github.com/LowieGoossens/octolabel
 source: https://github.com/LowieGoossens/octolabel
-archive: https://github.com/LowieGoossens/octolabel/archive/master.zip
+archive: https://github.com/LowieGoossens/octolabel/archive/refs/heads/master.zip
 
 # Set this to true if your plugin uses the dependency_links setup parameter to include
 # library versions not yet published on pypi. SHOULD ONLY BE USED IF THERE IS NO OTHER OPTION!
